@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product-app
+  name: product-app-argocd
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: product-app
+      app: product-app-argocd
   template:
     metadata:
       labels:
-        app: product-app
+        app: product-app-argocd
     spec:
       containers:
-      - name: product-app
+      - name: product-app-argocd
         image: devjor/product-app:02
         ports:
         - containerPort: 3000
@@ -77,11 +77,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: product-app-service
+  name: product-app-argocd-service
 spec:
   type: NodePort
   ports:
     - port: 3000
       targetPort: 3000
   selector:
-    app: product-app
+    app: product-app-argocd
